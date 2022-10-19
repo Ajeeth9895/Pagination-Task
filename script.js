@@ -553,37 +553,42 @@ table_row.append(table_data);
 
 var clicked_button = 1;
 
-//default function
+
+//Function for appending data into Table
+function all_data(j){ 
+  var data_value = `
+  <table>
+  <thead></thead>
+  <tbody>
+   <tr>
+   <td>${list_items[j].id}</td>
+   <td>${list_items[j].name}</td>
+   <td>${list_items[j].email}</td>
+   </tr>
+  </tbody>
+  </table>
+`
+let parent_variable = document.createElement('tr');
+parent_variable.classList.add('item');
+parent_variable.innerHTML = data_value
+table_body.append(parent_variable);
+}
+
+
+//default function to display default data
 var default_funct = ()=>{
   clicked_button=1;
-for(let j=0; j<10; j++){
-  
-  var data_value = `
-    <table>
-    <thead></thead>
-    <tbody>
-     <tr>
-     <td>${list_items[j].id}</td>
-     <td>${list_items[j].name}</td>
-     <td>${list_items[j].email}</td>
-     </tr>
-    </tbody>
-    </table>
-  `
-  let parent_variable = document.createElement('tr');
-  parent_variable.classList.add('item');
-  parent_variable.innerHTML = data_value
-  table_body.append(parent_variable);
- 
-
+    for(let j=0; j<10; j++){
+      all_data(j);
+    }
 }
-
-}
-
+    
 default_funct();
 
 
-//first button function Area
+
+
+// function for first button
 let firstButton = document.createElement('button');
 firstButton.setAttribute('id','first_button');
 firstButton.setAttribute('class','func_but');
@@ -595,31 +600,12 @@ firstButton.addEventListener('click',()=>{
   clicked_button=1;
     let page = 10;
     for(let j=0; j<page; j++){
-    
-      var data_value = `
-        <table>
-        <thead>
-        </thead>
-        <tbody >
-        
-         <td>${list_items[j].id}</td>
-         <td>${list_items[j].name}</td>
-         <td>${list_items[j].email}</td>
-         
-         </tbody>
-        </table>
-      `
-      let parent_variable = document.createElement('tr');
-      parent_variable.classList.add('item');
-      parent_variable.innerHTML = data_value
-      table_body.append(parent_variable);
- 
-
+      all_data(j);
     }
 })
 
 
-//previous button function Area
+//function for previous button 
 let previousButton = document.createElement('button');
 previousButton.setAttribute('id','previous_button');
 previousButton.setAttribute('class','func_but');
@@ -634,48 +620,18 @@ previousButton.addEventListener('click',()=>{
   let page = 10;
   if(i>0){
     for(let j=(i-1)*10; j<(i*page); j++){
+      
+      all_data(j);
 
-      var data_value = `
-        <table>
-         <tr>
-         <td>${list_items[j].id}</td>
-         <td>${list_items[j].name}</td>
-         <td>${list_items[j].email}</td>
-         </tr>
-        </table>
-      `
-      let parent_variable = document.createElement('tr');
-      parent_variable.classList.add('item');
-      parent_variable.innerHTML = data_value
-      table_body.append(parent_variable);
-     
-  
     }
   }else{
-    alert('This is First Page');
+    alert('This is your First Page');
     table_body.innerHTML="";
     clicked_button=1;
       let page = 10;
       for(let j=0; j<page; j++){
       
-        var data_value = `
-          <table>
-          <thead>
-          </thead>
-          <tbody >
-           <tr>
-           <td>${list_items[j].id}</td>
-           <td>${list_items[j].name}</td>
-           <td>${list_items[j].email}</td>
-           </tr>
-           </tbody>
-          </table>
-        `
-        let parent_variable = document.createElement('tr');
-        parent_variable.classList.add('item');
-        parent_variable.innerHTML = data_value
-        table_body.append(parent_variable);
-   
+        all_data(j);
   
       }
    }
@@ -685,7 +641,7 @@ previousButton.addEventListener('click',()=>{
 
 
 
-//pagination button function
+//function for pagination button
 for(let i=0; i<10; i++){
   
   let button = document.createElement('button');
@@ -701,24 +657,8 @@ for(let i=0; i<10; i++){
     let page = 10;
 
     for(let j=(i-1)*10; j<(i*page); j++){
-       
-      var data_value = `
-      <table>
-      <thead></thead>
-      <tbody>
-       <tr>
-       <td>${list_items[j].id}</td>
-       <td>${list_items[j].name}</td>
-       <td>${list_items[j].email}</td>
-       </tr>
-      </tbody>
-      </table>
-      `
-      let parent_variable = document.createElement('tr');
-      parent_variable.classList.add('item');
-      parent_variable.innerHTML = data_value
-      table_body.append(parent_variable);
      
+      all_data(j);
 
     }
     
@@ -728,7 +668,7 @@ for(let i=0; i<10; i++){
 }
 
 
-//Nextbutton  function Area
+//function for Next button
 let nextButton = document.createElement('button');
 nextButton.setAttribute('id','next_button');
 nextButton.setAttribute('class','func_but');
@@ -745,47 +685,17 @@ nextButton.addEventListener('click',()=>{
   if(i<11){
     for(let j=(i-1)*10; j<(i*page); j++){
 
-      var data_value = `
-        <table>
-         <tr>
-         <td>${list_items[j].id}</td>
-         <td>${list_items[j].name}</td>
-         <td>${list_items[j].email}</td>
-         </tr>
-        </table>
-      `
-      let parent_variable = document.createElement('tr');
-      parent_variable.classList.add('item');
-      parent_variable.innerHTML = data_value
-      table_body.append(parent_variable);
-     
+      all_data(j);
   
     }
   }else{
-    alert('This is Last Page');
+    alert('This is your Last Page');
     table_body.innerHTML="";
     clicked_button=10;
       let page = 100;
       for(let j=90; j<page; j++){
       
-        var data_value = `
-          <table>
-          <thead>
-          </thead>
-          <tbody >
-           <tr>
-           <td>${list_items[j].id}</td>
-           <td>${list_items[j].name}</td>
-           <td>${list_items[j].email}</td>
-           </tr>
-           </tbody>
-          </table>
-        `
-        let parent_variable = document.createElement('tr');
-        parent_variable.classList.add('item');
-        parent_variable.innerHTML = data_value
-        table_body.append(parent_variable);
-   
+        all_data(j);
   
       }
   }
@@ -795,7 +705,7 @@ nextButton.addEventListener('click',()=>{
 
 
 
-//last button function area
+//function for Last button
 let lastButton = document.createElement('button');
 lastButton.innerHTML = 'LAST';
 lastButton.setAttribute('id','last_button')
@@ -808,23 +718,7 @@ lastButton.addEventListener('click',()=>{
   let page = 100;
   for(let j=90; j<page; j++){
 
-    var data_value = `
-    <table>
-    <thead></thead>
-    <tbody>
-     <tr>
-     <td>${list_items[j].id}</td>
-     <td>${list_items[j].name}</td>
-     <td>${list_items[j].email}</td>
-     </tr>
-    </tbody>
-    </table>
-    `
-    let parent_variable = document.createElement('tr');
-    parent_variable.classList.add('item');
-    parent_variable.innerHTML = data_value
-    table_body.append(parent_variable);
-   
+    all_data(j);
 
   }
 })
